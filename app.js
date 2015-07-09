@@ -1,6 +1,8 @@
 var https = require("https");
+// zipcode from the user
 var zip = process.argv[2];
 
+//print messages
 function printMessage(weather){
 	console.log("the temperature is currently " + weather);
 }
@@ -33,7 +35,7 @@ function getWeather(lat,lng){
 				}
 		});
 	});
-	}
+}
 
 
 var gReq = https.get("https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:"+zip+"&key=AIzaSyDrUf2oguwPHui3IE4F6AaUbbaSgOAyE3U",
@@ -47,7 +49,6 @@ var gReq = https.get("https://maps.googleapis.com/maps/api/geocode/json?componen
 			//catch and assign lat and long vars
 			var lat = location.results[0].geometry.location.lat
 			var lng = location.results[0].geometry.location.lng
-			
 			getWeather(lat,lng)
 		});
 	});
